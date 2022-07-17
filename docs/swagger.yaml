@@ -1,0 +1,133 @@
+basePath: /
+definitions:
+  main.task:
+    properties:
+      done:
+        type: boolean
+      due:
+        type: string
+      id:
+        type: string
+      task:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: Swagger API for Golang Project
+  title: Task Swagger API
+  version: "1.0"
+paths:
+  /tasks:
+    get:
+      consumes:
+      - application/json
+      description: Get tasks
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+      summary: GET
+      tags:
+      - requests
+    post:
+      consumes:
+      - application/json
+      description: Post task
+      parameters:
+      - description: new task
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/main.task'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+      summary: POST
+      tags:
+      - requests
+  /tasks/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete task
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+      security:
+      - ApiKeyAuth: []
+      summary: DELETE
+      tags:
+      - requests
+    get:
+      consumes:
+      - application/json
+      description: Get tasks
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+      security:
+      - ApiKeyAuth: []
+      summary: GET BY ID
+      tags:
+      - requests
+    put:
+      consumes:
+      - application/json
+      description: Update task
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: updated task
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/main.task'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+      summary: UPDATE
+      tags:
+      - requests
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

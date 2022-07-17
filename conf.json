@@ -1,0 +1,6 @@
+{
+    "URI": "mongodb://root:example@localhost:27017",
+    "Database": "task-book",
+    "Collection": "task",
+    "UserCollection": "user"
+}
